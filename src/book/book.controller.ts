@@ -59,6 +59,11 @@ export class BookController {
     return this.bookService.findAll();
   }
 
+  @Get('recommended')
+  async getRecommendedBooks(): Promise<Book[]> {
+    return this.bookService.getRecommendedBooks();
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Book> {
     return this.bookService.findOne(+id);

@@ -6,12 +6,16 @@ import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './entities/book.entity';
 import { ApiQuery } from '@nestjs/swagger';
 import { BookGenre } from 'src/typeorm/enum/bookGenre';
+import { User } from "../user/entities/user.entity";
 
 @Injectable()
 export class BookService {
   constructor(
     @InjectRepository(Book)
     private readonly bookRepository: Repository<Book>,
+
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   async create(createBookDto: CreateBookDto): Promise<{ message: string; data: Book }> {
@@ -44,5 +48,15 @@ export class BookService {
   async remove(id: number): Promise<void> {
     const book = await this.findOne(id);
     await this.bookRepository.remove(book);
+  }
+
+  async getRecommendedBooks(): Promise<Book[]> {
+    const userRates = await this.userRepository.find({ relations : ['rates'] });
+
+    // Use reocomendation algorithm utils to get recommended books
+    const recommendedBooks = getRecommendations(userRates, 1);
+
+
+    return
   }
 }

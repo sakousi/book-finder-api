@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 import { BookUserList } from "src/typeorm/JoinEntity/BookUserList";
+import { Rate } from "../../rate/entities/rate.entity";
 
 
 @Entity({ name: 'User' })
@@ -51,4 +52,6 @@ export class User {
     @OneToMany(() => BookUserList, bookUserList => bookUserList.user)
     book_user_list: BookUserList[];
 
+    @OneToMany(() => Rate, rate => rate.user)
+    rates: Rate[];
 }
