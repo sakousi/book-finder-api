@@ -26,7 +26,7 @@ export class BookController {
     let filePath = null;
 
     if (file) {
-      const timestamp = Date.now(); // Utilisation de l'horodatage
+      const timestamp = Date.now();
       const filename = `${timestamp}-${file.originalname}`;
       const fileUpload = bucket.file(filename);
 

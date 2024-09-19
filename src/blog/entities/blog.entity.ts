@@ -15,6 +15,6 @@ export class Blog {
     blog_content: string;
 
     @ApiProperty()
-    @Column({ type: 'text' })
+    @Column({ nullable: true })
     blog_image: string;
 }
