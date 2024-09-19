@@ -5,6 +5,7 @@ import { UpdateBookDto } from './dto/update-book.dto';
 import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { Book } from './entities/book.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { bucket } from 'src/firebase.config';
 
 @ApiTags('Book')
 @Controller('book')
@@ -22,7 +23,34 @@ export class BookController {
     @UploadedFile() file: Express.Multer.File,
     @Body() createBookDto: CreateBookDto,
   ) {
-    const filePath = file ? `/uploads/${file.filename}` : null;
+    let filePath = null;
+
+    if (file) {
+      const timestamp = Date.now(); // Utilisation de l'horodatage
+      const filename = `${timestamp}-${file.originalname}`;
+      const fileUpload = bucket.file(filename);
+
+      await new Promise((resolve, reject) => {
+        const stream = fileUpload.createWriteStream({
+          metadata: {
+            contentType: file.mimetype,
+          },
+        });
+
+        stream.on('error', (err) => {
+          reject(err);
+        });
+
+        stream.on('finish', async () => {
+          await fileUpload.makePublic();
+          filePath = fileUpload.publicUrl();
+          resolve(null);
+        });
+
+        stream.end(file.buffer);
+      });
+    }
+
     return this.bookService.create({ ...createBookDto, book_image: filePath });
   }
 

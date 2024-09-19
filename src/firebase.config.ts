@@ -1,0 +1,15 @@
+import * as admin from 'firebase-admin';
+import { ServiceAccount } from 'firebase-admin';
+
+const serviceAccount: ServiceAccount = {
+  projectId: 'book-finder-1640b',
+  privateKey: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCp92zNUUSYUJ/v\nsCmyFdJq5AdnAeEzXwnhd+uA3ANhh99MfD3OiCWC9hfgLcaesgRhaRVJLuJQqtyh\nnjxVDYpoZk3oQG/AlKZ/2kxIkQNOSDfeH5tC+KKZVff4j3NXa6b0m6A5ff1+K9gA\nSrdNMu5KNOJT1D/h2EiNcDSwqnip0mvNsd3kr7mvlLMCKVqCJLM7e5igDcgrHIkW\nS67b45bGA8BKcHfD8zAhXmYZwlIY3VFUmpisR7zafV5hImMtsBHJKh7w/1lOO2aj\nu8cVd09QViGJo8Sgs/OQQdA2bQYZVCyoiTXJSN+QfaWxzjh0jT/U57ZU5z10bVec\nRC3bXjF1AgMBAAECggEAC/r8SNanIqNgOqlsrvhZzh4HpYuc352d2S42Q+1+MYQ9\nyariQmoXVs1Y7nzbiLkclO8uyGtNGYmJpry8HPSo4mX/rNTJ68WunMl64gySspRl\nl7sbmxNihrNoGLWn2Cwm5wwHNbY7RYb6oT6jAAaMhF+I6obF//naV1nm5OMHQVUN\nxN9t95zTuABlnVEMJ6U9DzaJ1qDEKfaatMHRkTlxbt75dvsEqyqrb2HFyxX2divu\nZhuvGinj1Ndqp8UPi0Ey6UAXqwsf52GqTseDDBRNUipKOPK6h4K+U8eL7EnMNZHG\nIgL/wL/ZRoRZ+mdAfdDFjxFgA7OOjMGgjuOsWHj7EQKBgQDZRhEUIiGTSue7wiwi\noXn0gxjwSeQiDFQLbOU6G2ce9s3yxTQQxdzTdCzwD+nDRhuNxpyoWTvau4ZZN+rP\nZ3SIYmGxj8FKm6k2nzyZZvq0uPDFqtj1qLVtLzfJG2OYEIQLH2qoQAjOZJN1b4iz\nj0cUO87Z9gsFPP8AntNjYgLG7QKBgQDIQsnxvb7Qz5GxsIFAX5spUWop66wyHoTY\nP7fYlW0qA46QCZna8WDIILLvDMTTpOCZhLuQoJNZ3WR/Qzk47ZC7R6NipipN2Fyd\nxkXxKTBa8k1CMusXG9WGbuaFk7IXpXNoHxI1Nwh7cQpxDiON3pTs2M2LUY5fRLGS\nOunIDil7qQKBgQDNdhq0ZUpG1TCqNwYxgW2oMUimAdn/8JSRcVqbRkqP12gNyTph\nGhqmw1ezc/jktilcOpLuB+Q4BdkYCW68zuI+Dnq/xGdOvECZ7J8LmXw+5hyZb+RW\n+kEGjP496O6XYBbdxcnAbT1mn2lqRhyJYFYg5iXHq4nkXDfwSEEx2/8wSQKBgQC3\nGBFouzHN2il7y0OxJnhHY49r+nQ6cprE2CTvmVbwdcYPPSf0/IGfF/5g/0ypsHJF\nCg0vIxD1tawfisezm8ia4dmo5QGCoNG00sW5ww3Z6PToFIPKYgFsYtLSyAGpCvUj\n+lx8WO+hZO3GBcZN/HYuwd3TheJkifrMFp8N8JzO2QKBgGsZ/DwX8R0lm7D7maz2\n1S87ZPr2KAtp/WaffhqRjbZgpprTuRsLbfJVp/uyBtqI/nV0w6jKSZhblVvxZQwh\ntD+VuTo/yF/xUTbTMVFvzrKEFg1Z7sn/zeMmCUApwKf1bdJFAInfwEPdhbVLlEwh\nUzDORgDdq+YdsSwo4s2vkDU9\n-----END PRIVATE KEY-----\n",
+  clientEmail: "firebase-adminsdk-j08nl@book-finder-1640b.iam.gserviceaccount.com",
+};
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: 'book-finder-1640b.appspot.com',
+});
+
+export const bucket = admin.storage().bucket();
