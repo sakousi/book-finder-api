@@ -6,7 +6,6 @@ import { BookUserList } from './typeorm/JoinEntity/BookUserList';
 import { BookModule } from './book/book.module';
 import { UserModule } from './user/user.module';
 import { BlogModule } from './blog/blog.module';
-import { PartnerModule } from './partner/partner.module';
 import { Book } from './book/entities/book.entity';
 import { User } from './user/entities/user.entity';
 import { Blog } from './blog/entities/blog.entity';
@@ -30,8 +29,7 @@ import { Blog } from './blog/entities/blog.entity';
     }),
     BookModule,
     UserModule,
-    BlogModule,
-    PartnerModule,
+    BlogModule
 
   ],
   controllers: [AppController],

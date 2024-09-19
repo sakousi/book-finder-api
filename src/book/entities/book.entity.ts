@@ -32,7 +32,7 @@ export class Book {
     @Column({nullable: true})
     book_langue: string;
 
-    @ApiProperty({ example: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/792px-Placeholder_book.svg.png', nullable: true })
+    @ApiProperty({ example: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Placeholder_book.svg/792px-Placeholder_book.svg.png'})
     @Column({ nullable: true })
     book_image?: string;
 
