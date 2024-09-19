@@ -10,33 +10,24 @@ import { BlogModule } from './blog/blog.module';
 import { Book } from './book/entities/book.entity';
 import { User } from './user/entities/user.entity';
 import { RateModule } from './rate/rate.module';
-import * as process from "node:process";
-import { Rate } from "./rate/entities/rate.entity";
+import * as process from 'node:process';
+import { Rate } from './rate/entities/rate.entity';
 import { Blog } from './blog/entities/blog.entity';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(
-      {
-        isGlobal: true,
-      }
-    ),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DATABASE_HOST,
-      port: process.env.NODE_ENV === 'production' ? undefined : 3306,
+      port: parseInt(process.env.DATABASE_PORT),
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [
-        Book,
-        BookUserList,
-        User,
-        Blog,
-        User,
-        Rate,
-      ],
-      synchronize: true
+      entities: [Book, BookUserList, User, Blog, User, Rate],
+      synchronize: true,
     }),
     BookModule,
     UserModule,
