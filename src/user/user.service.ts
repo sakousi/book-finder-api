@@ -21,9 +21,6 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} user`;
-  // }
   async findOneByMail(user_mail: string): Promise<UserDto> {
     return this.userRepository.findOne({
       where: { user_mail },
