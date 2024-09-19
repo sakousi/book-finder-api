@@ -9,6 +9,7 @@ import { BlogModule } from './blog/blog.module';
 import { PartnerModule } from './partner/partner.module';
 import { Book } from './book/entities/book.entity';
 import { User } from './user/entities/user.entity';
+import { Blog } from './blog/entities/blog.entity';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { User } from './user/entities/user.entity';
       entities: [
         Book,
         BookUserList,
-        User
+        User,
+        Blog
       ],
       synchronize: true
     }),
